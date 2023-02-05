@@ -12,7 +12,7 @@ async function invokeOpenApi(searchTerm,setSpinner,setPrimaryImageUrl) {
     
     const { Configuration, OpenAIApi } = require("openai");
     const configuration = new Configuration({
-      apiKey: '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'
+        apiKey: process.env.OPENAI_API_KEY,
     });
     
     const openai = new OpenAIApi(configuration);
