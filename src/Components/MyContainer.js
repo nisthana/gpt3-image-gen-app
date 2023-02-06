@@ -14,7 +14,6 @@ export default function Container () {
     const [primaryImageUrl,setPrimaryImageUrl] = useState('');
     const [imageTitle,setImageTitle] = useState('');
 
-    
        
     return (
         

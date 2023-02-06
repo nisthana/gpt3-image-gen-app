@@ -1,29 +1,31 @@
 import { useState, CSSProperties } from "react";
-
-import Spinner from "./Spinner";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Stack from 'react-bootstrap/Stack';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
+import MySpinner from "./MySpinner";
 
 
-async function invokeOpenApi(searchTerm,setSpinner,setPrimaryImageUrl) {
-    
+async function invokeOpenApi(searchTerm,setSpinner2,setPrimaryImageUrl) {
+    console.log("invokeOpenApi searchTerm = " + searchTerm);
     const { Configuration, OpenAIApi } = require("openai");
     const configuration = new Configuration({
-        apiKey: process.env.OPENAI_API_KEY,
+        apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+        
     });
     
     const openai = new OpenAIApi(configuration);
-    setSpinner(true);
+    setSpinner2(true);
     //spinnerSetter(true);
     const response = await openai.createImage({
         prompt: searchTerm,
         n: 3,
         size: "1024x1024",
       });
-      setSpinner(false);
+      setSpinner2(false);
       //spinnerSetter(false);
       console.log(response.data.data[0].url);
       setPrimaryImageUrl(response.data.data[0].url);
@@ -31,32 +33,63 @@ async function invokeOpenApi(searchTerm,setSpinner,setPrimaryImageUrl) {
 }
 export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
     const [searchTerm,setSearchTerm] = useState('');
-    const [spinner,setSpinner] = useState(false);
+    const [spinner2,setSpinner2] = useState(false);
+    const [imageStyle, setImageStyle] = useState('photo realistic');
+    const [promptPrefix, setPromptPrefix] = useState('an astronaut riding a horse');
+    const [radioValue, setRadioValue] = useState('photo realistic');
+    const radios = [
+        { name: 'photo realistic', value: 'photo realistic', imgStyle:'photo realistic' },
+        { name: 'andy warhole', value: 'andy warhole', imgStyle:'andy warhole'},
+        { name: 'vincent van gogh', value: 'vincent van gogh' , imgStyle:'vincent van gogh'},
+        { name: 'pencil drawing', value: 'pencil drawing' , imgStyle:'pencil drawing'},
+        { name: 'pop art', value: 'pop art' , imgStyle:'pop art'},
+      ];
     let [loading, setLoading] = useState(true);
+
     return (
         
         <div>
             <Row className="justify-content-md-center">
-                <Col xs lg="8">
+                <Col xs lg="12">
                     
                 <Stack gap={3}>
                     <Stack direction="horizontal" gap={3}>
-                        <Form.Control type="text" className="me-auto" placeholder="What do you want to create:" onChange={handleTextChange} disabled={spinner} value={searchTerm}/>
-                        <Button variant="primary" onClick={handleFormSubmit} disabled={spinner}>{!spinner ? 'Search' : 'Loading...'}</Button>
+                        <Form.Control type="text" className="me-auto" placeholder="What do you want to create:" onChange={handleTextChange} disabled={spinner2} value={searchTerm}/>
+                        <Button variant="primary" onClick={handleFormSubmit} disabled={spinner2}>{!spinner2 ? 'Search' : 'Loading...'}</Button>
                         
                     </Stack>
                     
                     
-                    <Stack direction="horizontal" gap={3}>
-                        <Button variant="outline-primary" onClick={()=>{
-                                invokeOpenApi('astronaut in palace',setSpinner,setPrimaryImageUrl);
-                            }}>astronaut in palace</Button>
-                        <Button variant="outline-secondary" onClick={()=>{
-                                invokeOpenApi('cat in the hat',setSpinner,setPrimaryImageUrl);
-                            }}>cat in the hat</Button>
-                        <Button variant="outline-danger" onClick={()=>{
-                                invokeOpenApi('stephen curry on moon',setSpinner,setPrimaryImageUrl);
-                            }}>stephen curry on moon</Button>
+                    <Stack  gap={3}>
+                            <Button variant="outline-primary" onClick={()=>{
+                                const searchFor = promptPrefix + ' in a ' + imageStyle + ' style';
+                                console.log(searchFor);
+                                invokeOpenApi(searchFor,setSpinner2,setPrimaryImageUrl);
+                            }}>{promptPrefix}</Button>
+                            <h3>in a</h3>
+                            <ButtonGroup>
+                                {radios.map((radio, idx) => (
+                                <ToggleButton
+                                    key={idx}
+                                    id={`radio-${idx}`}
+                                    type="radio"
+                                    variant= 'outline-success'
+                                    name="radio"
+                                    value={radio.value}
+                                    checked={radioValue === radio.value}
+                                    onChange={(e) => {
+                                        setRadioValue(e.currentTarget.value);
+                                        const searchFor = promptPrefix + ' in a ' + e.currentTarget.value + ' style';
+                                        invokeOpenApi(searchFor,setSpinner2,setPrimaryImageUrl);
+                                    }}
+                                >
+                                    {radio.name}
+                                </ToggleButton>
+                                ))}
+                            </ButtonGroup>
+                            <h3>style</h3>
+                            <MySpinner showSpinner={spinner2}/> 
+                        
       
                     </Stack>
                     
@@ -65,7 +98,7 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
                 
    
             </Row>
-            <Row><Col><Spinner showSpinner={spinner}/></Col></Row>
+            
             
         
     
@@ -74,7 +107,7 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
     function handleFormSubmit(e) {
         e.preventDefault();
         
-        invokeOpenApi(searchTerm,setSpinner,setPrimaryImageUrl);
+        invokeOpenApi(searchTerm,setSpinner2,setPrimaryImageUrl);
         
     }
     function handleTextChange(e) {
