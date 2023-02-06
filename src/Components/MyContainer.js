@@ -20,7 +20,7 @@ export default function Container () {
         <div>
             <Row className="justify-content-md-center">
                 <Col xs lg="8">
-                <h2>GPT3 Image Generator</h2>
+                <h2>Text to Picture</h2>
                     <Stack gap={3}>
                         <SearchBox setPrimaryImageUrl={setPrimaryImageUrl} setImageTitle={setImageTitle}/>
                         <ImageCard url={primaryImageUrl} title={imageTitle}/>
