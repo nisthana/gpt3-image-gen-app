@@ -11,8 +11,8 @@ import Col from 'react-bootstrap/Col';
 import Stack from 'react-bootstrap/Stack';
 import Badge from 'react-bootstrap/Badge';
 export default function Container () {
-    const [primaryImageUrl,setPrimaryImageUrl] = useState('');
-    const [imageTitle,setImageTitle] = useState('');
+    const [primaryImageUrl,setPrimaryImageUrl] = useState('img-1.png');
+    const [imageTitle,setImageTitle] = useState('an astronaut riding a horse in a photo realistic style');
 
        
     return (
