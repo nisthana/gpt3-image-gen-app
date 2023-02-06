@@ -77,6 +77,7 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
                                         setRadioValue(e.currentTarget.value);
                                         const searchFor = searchTerm + ' in a ' + e.currentTarget.value + ' style';
                                         setImageStyle(e.currentTarget.value);
+                                        setImageTitle(searchFor);
                                         invokeOpenApi(searchFor,setSpinner2,setPrimaryImageUrl);
                                     }}
                                 >
@@ -106,6 +107,7 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
         
         const searchFor = searchTerm + ' in a ' + imageStyle + ' style';
         console.log(searchFor);
+        setImageTitle(searchFor);
         invokeOpenApi(searchFor,setSpinner2,setPrimaryImageUrl);
         
     }
