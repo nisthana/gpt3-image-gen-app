@@ -38,15 +38,15 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
     
     const [radioValue, setRadioValue] = useState('photo realistic');
     const radios = [
-        { name: 'photo realistic', value: 'photo realistic', imgStyle:'photo realistic' },
-        { name: 'andy warhole', value: 'andy warhole', imgStyle:'andy warhole'},
-        { name: 'vincent van gogh', value: 'vincent van gogh' , imgStyle:'vincent van gogh'},
-        { name: 'pencil drawing', value: 'pencil drawing' , imgStyle:'pencil drawing'},
-        { name: 'pop art', value: 'pop art' , imgStyle:'pop art'},
-        { name: 'abstract art', value: 'abstract art' , imgStyle:'abstract art'},
-        { name: 'spray paint', value: 'spray paint' , imgStyle:'spray paint'},
-        { name: 'oil', value: 'oil' , imgStyle:'oil'},
-        { name: 'acrylic', value: 'acrylic' , imgStyle:'acrylic'},
+        { name: 'photo realistic', value: 'photo realistic', imgStyle:'photo realistic',cachedImg:'photo-realistic.png' },
+        { name: 'andy warhole', value: 'andy warhole', imgStyle:'andy warhole',cachedImg:'andy-warhole.png'},
+        { name: 'vincent van gogh', value: 'vincent van gogh' , imgStyle:'vincent van gogh', cachedImg:'van-gogh.png'},
+        { name: 'pencil drawing', value: 'pencil drawing' , imgStyle:'pencil drawing',cachedImg:'pencil.png'},
+        { name: 'pop art', value: 'pop art' , imgStyle:'pop art',cachedImg:'pop-art.png'},
+        { name: 'abstract art', value: 'abstract art' , imgStyle:'abstract art',cachedImg:'abstract-art.png'},
+        { name: 'spray paint', value: 'spray paint' , imgStyle:'spray paint',cachedImg:'spray-paint.png'},
+        { name: 'oil', value: 'oil' , imgStyle:'oil',cachedImg:'oil.png'},
+        { name: 'acrylic', value: 'acrylic' , imgStyle:'acrylic',cachedImg:'acrylic.png'},
       ];
     let [loading, setLoading] = useState(true);
 
@@ -54,10 +54,12 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
         
         <div>
             <Row className="justify-content-md-center">
-                <Col xs lg="12">
+                <Col xs lg="9">
                     
                 <Stack gap={3}>
+                <h3>Type in what kind of image you want AI to generate</h3>
                     <Stack direction="horizontal" gap={3}>
+                        
                         <Form.Control type="text" className="me-auto" placeholder="What do you want to create:" onChange={handleTextChange} disabled={spinner2} value={searchTerm}/>
                         <Button variant="primary" onClick={handleFormSubmit} disabled={spinner2}>{!spinner2 ? 'Search' : 'Loading...'}</Button>
                         
@@ -66,7 +68,7 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
                     
                     <Stack  gap={3}>
                             
-                            <h3>in a</h3>
+                            <h3>select a style</h3>
                             <ButtonGroup>
                                 {radios.map((radio, idx) => (
                                 <ToggleButton
@@ -82,14 +84,19 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
                                         const searchFor = searchTerm + ' in a ' + e.currentTarget.value + ' style';
                                         setImageStyle(e.currentTarget.value);
                                         setImageTitle(searchFor);
-                                        invokeOpenApi(searchFor,setSpinner2,setPrimaryImageUrl);
+                                        if (searchTerm == 'an astronaut riding a horse') {
+                                            setPrimaryImageUrl(radios[idx].cachedImg);
+                                        } else {
+                                            invokeOpenApi(searchFor,setSpinner2,setPrimaryImageUrl);
+                                        }
+                                        
                                     }}
                                 >
                                     {radio.name}
                                 </ToggleButton>
                                 ))}
                             </ButtonGroup>
-                            <h3>style</h3>
+                            
                             <MySpinner showSpinner={spinner2}/> 
                         
       

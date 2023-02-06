@@ -6,7 +6,7 @@ export default function MyNavbar (){
         <>
           <Navbar bg="dark" variant="dark">
             <Container>
-              <Navbar.Brand href="#home">Text to Picture</Navbar.Brand>
+              <Navbar.Brand href="#home">Picjar</Navbar.Brand>
               <Nav className="me-auto">
                 <Nav.Link href="#home">Home</Nav.Link>
                 
