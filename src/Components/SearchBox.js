@@ -32,10 +32,10 @@ async function invokeOpenApi(searchTerm,setSpinner2,setPrimaryImageUrl) {
       
 }
 export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
-    const [searchTerm,setSearchTerm] = useState('');
+    const [searchTerm,setSearchTerm] = useState('an astronaut riding a horse');
     const [spinner2,setSpinner2] = useState(false);
     const [imageStyle, setImageStyle] = useState('photo realistic');
-    const [promptPrefix, setPromptPrefix] = useState('an astronaut riding a horse');
+    
     const [radioValue, setRadioValue] = useState('photo realistic');
     const radios = [
         { name: 'photo realistic', value: 'photo realistic', imgStyle:'photo realistic' },
@@ -61,11 +61,7 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
                     
                     
                     <Stack  gap={3}>
-                            <Button variant="outline-primary" onClick={()=>{
-                                const searchFor = promptPrefix + ' in a ' + imageStyle + ' style';
-                                console.log(searchFor);
-                                invokeOpenApi(searchFor,setSpinner2,setPrimaryImageUrl);
-                            }}>{promptPrefix}</Button>
+                            
                             <h3>in a</h3>
                             <ButtonGroup>
                                 {radios.map((radio, idx) => (
@@ -79,7 +75,8 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
                                     checked={radioValue === radio.value}
                                     onChange={(e) => {
                                         setRadioValue(e.currentTarget.value);
-                                        const searchFor = promptPrefix + ' in a ' + e.currentTarget.value + ' style';
+                                        const searchFor = searchTerm + ' in a ' + e.currentTarget.value + ' style';
+                                        setImageStyle(e.currentTarget.value);
                                         invokeOpenApi(searchFor,setSpinner2,setPrimaryImageUrl);
                                     }}
                                 >
@@ -107,7 +104,9 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
     function handleFormSubmit(e) {
         e.preventDefault();
         
-        invokeOpenApi(searchTerm,setSpinner2,setPrimaryImageUrl);
+        const searchFor = searchTerm + ' in a ' + imageStyle + ' style';
+        console.log(searchFor);
+        invokeOpenApi(searchFor,setSpinner2,setPrimaryImageUrl);
         
     }
     function handleTextChange(e) {
