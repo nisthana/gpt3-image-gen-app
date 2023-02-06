@@ -46,6 +46,7 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
         { name: 'abstract art', value: 'abstract art' , imgStyle:'abstract art'},
         { name: 'spray paint', value: 'spray paint' , imgStyle:'spray paint'},
         { name: 'oil', value: 'oil' , imgStyle:'oil'},
+        { name: 'acrylic', value: 'acrylic' , imgStyle:'acrylic'},
       ];
     let [loading, setLoading] = useState(true);
 
