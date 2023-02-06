@@ -19,7 +19,7 @@ export default function Container () {
         
         <div>
             <Row className="justify-content-md-center">
-                <Col xs lg="8">
+                <Col xs lg="12">
                 <h2>Text to Picture</h2>
                     <Stack gap={3}>
                         <SearchBox setPrimaryImageUrl={setPrimaryImageUrl} setImageTitle={setImageTitle}/>

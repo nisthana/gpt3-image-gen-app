@@ -43,6 +43,9 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
         { name: 'vincent van gogh', value: 'vincent van gogh' , imgStyle:'vincent van gogh'},
         { name: 'pencil drawing', value: 'pencil drawing' , imgStyle:'pencil drawing'},
         { name: 'pop art', value: 'pop art' , imgStyle:'pop art'},
+        { name: 'abstract art', value: 'abstract art' , imgStyle:'abstract art'},
+        { name: 'spray paint', value: 'spray paint' , imgStyle:'spray paint'},
+        { name: 'oil', value: 'oil' , imgStyle:'oil'},
       ];
     let [loading, setLoading] = useState(true);
 
