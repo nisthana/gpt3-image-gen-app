@@ -7,6 +7,7 @@ import Stack from 'react-bootstrap/Stack';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import MySpinner from "./MySpinner";
+import Spinner from 'react-bootstrap/Spinner';
 
 
 async function invokeOpenApi(searchTerm,setSpinner2,setPrimaryImageUrl) {
@@ -54,14 +55,24 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
         
         <div>
             <Row className="justify-content-md-center">
-                <Col xs lg="9">
+                <Col xs lg="10">
                     
                 <Stack gap={3}>
                 <h3>Type in what kind of image you want AI to generate</h3>
                     <Stack direction="horizontal" gap={3}>
                         
                         <Form.Control type="text" className="me-auto" placeholder="What do you want to create:" onChange={handleTextChange} disabled={spinner2} value={searchTerm}/>
-                        <Button variant="primary" onClick={handleFormSubmit} disabled={spinner2}>{!spinner2 ? 'Search' : 'Loading...'}</Button>
+                        <Button variant="primary" onClick={handleFormSubmit} disabled={spinner2}>
+                        <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                            
+                            className={!spinner2 ? "visually-hidden" : "visually-hidden1"}
+                            />
+                            {!spinner2 ? 'Search' : ''}</Button>
                         
                     </Stack>
                     
@@ -97,7 +108,7 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
                                 ))}
                             </ButtonGroup>
                             
-                            <MySpinner showSpinner={spinner2}/> 
+                            
                         
       
                     </Stack>
