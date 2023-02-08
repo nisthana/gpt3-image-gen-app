@@ -22,15 +22,21 @@ async function invokeOpenApi(searchTerm,setSpinner2,setPrimaryImageUrl) {
     const openai = new OpenAIApi(configuration);
     setSpinner2(true);
     //spinnerSetter(true);
-    const response = await openai.createImage({
-        prompt: searchTerm,
-        n: 1,
-        size: "512x512",
-      });
-      setSpinner2(false);
-      //spinnerSetter(false);
-      console.log(response.data.data[0].url);
-      setPrimaryImageUrl(response.data.data[0].url);
+    try {
+        const response = await openai.createImage({
+            prompt: searchTerm,
+            n: 1,
+            size: "512x512",
+          });
+          setSpinner2(false);
+          //spinnerSetter(false);
+          console.log(response.data.data[0].url);
+          setPrimaryImageUrl(response.data.data[0].url);
+    } catch (err) {
+        console.log(err);
+        setSpinner2(false);
+    }
+    
       
 }
 export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
