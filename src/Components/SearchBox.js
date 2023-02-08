@@ -1,4 +1,4 @@
-import { useState, CSSProperties } from "react";
+import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -6,9 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Stack from 'react-bootstrap/Stack';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
-import MySpinner from "./MySpinner";
 import Spinner from 'react-bootstrap/Spinner';
-import { Container } from "react-bootstrap";
 import Prompts from "../Data/Prompts";
 
 
@@ -57,7 +55,7 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
         { name: 'oil', value: 'oil' , imgStyle:'oil',cachedImg:'oil.png'},
         { name: 'acrylic', value: 'acrylic' , imgStyle:'acrylic',cachedImg:'acrylic.png'},
       ];
-    let [loading, setLoading] = useState(true);
+    
 
     return (
         <Row className="justify-content-md-center">
@@ -115,7 +113,7 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
                                         const searchFor = searchTerm + ' in a ' + e.currentTarget.value + ' style';
                                         setImageStyle(e.currentTarget.value);
                                         setImageTitle(searchFor);
-                                        if (searchTerm == 'an astronaut riding a horse') {
+                                        if (searchTerm === 'an astronaut riding a horse') {
                                             setPrimaryImageUrl(radios[idx].cachedImg);
                                         } else {
                                             invokeOpenApi(searchFor,setSpinner2,setPrimaryImageUrl);
@@ -139,7 +137,7 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
     function handleFormSubmit(e) {
         e.preventDefault();
         
-        const searchFor = imageStyle == '' ? searchTerm : searchTerm + ' in a ' + imageStyle + ' style';
+        const searchFor = imageStyle === '' ? searchTerm : searchTerm + ' in a ' + imageStyle + ' style';
         console.log(searchFor);
         setImageTitle(searchFor);
         invokeOpenApi(searchFor,setSpinner2,setPrimaryImageUrl);
