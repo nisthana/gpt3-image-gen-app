@@ -8,6 +8,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import MySpinner from "./MySpinner";
 import Spinner from 'react-bootstrap/Spinner';
+import { Container } from "react-bootstrap";
 
 
 async function invokeOpenApi(searchTerm,setSpinner2,setPrimaryImageUrl) {
@@ -52,17 +53,15 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
     let [loading, setLoading] = useState(true);
 
     return (
-        
-        <div>
-            <Row className="justify-content-md-center">
-                <Col xs lg="10">
-                    
+        <Row className="justify-content-md-center">
+            <Col >
+                <h3>What image do you want to generate today?</h3>
                 <Stack gap={3}>
-                <h3>Type in what kind of image you want AI to generate</h3>
-                    <Stack direction="horizontal" gap={3}>
-                        
-                        <Form.Control type="text" className="me-auto" placeholder="What do you want to create:" onChange={handleTextChange} disabled={spinner2} value={searchTerm}/>
-                        <Button variant="primary" onClick={handleFormSubmit} disabled={spinner2}>
+                <Button>Surprise Me</Button>
+                
+                <Stack gap={3} direction="horizontal">
+                            <Form.Control type="text" placeholder="What do you want to create:" onChange={handleTextChange} disabled={spinner2} value={searchTerm}/>
+                     <Button variant="primary" onClick={handleFormSubmit} disabled={spinner2}>
                         <Spinner
                             as="span"
                             animation="border"
@@ -73,13 +72,14 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
                             className={!spinner2 ? "visually-hidden" : "visually-hidden1"}
                             />
                             {!spinner2 ? 'Search' : ''}</Button>
+                            
+                          </Stack>  
+                            
                         
-                    </Stack>
-                    
                     
                     <Stack  gap={3}>
                             
-                            <h3>select a style</h3>
+                            
                             <ButtonGroup>
                                 {radios.map((radio, idx) => (
                                 <ToggleButton
@@ -107,23 +107,15 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
                                 </ToggleButton>
                                 ))}
                             </ButtonGroup>
-                            
-                            
-                        
-      
-                    </Stack>
-                    
-                    </Stack>
-                </Col>
-                
-   
-            </Row>
-            
-            
-        
     
-    </div>
-    )
+                    </Stack>
+                </Stack>
+            </Col>
+        
+        </Row>
+
+    
+    );
     function handleFormSubmit(e) {
         e.preventDefault();
         

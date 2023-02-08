@@ -5,7 +5,7 @@ export default function MyNavbar (){
     return (
         <>
           <Navbar bg="dark" variant="dark">
-            <Container>
+            <Container class="bg-primary">
               <Navbar.Brand href="#home">Picjar</Navbar.Brand>
               <Nav className="me-auto">
                 <Nav.Link href="#home">Home</Nav.Link>

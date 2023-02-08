@@ -10,20 +10,15 @@ import MyContainer from './Components/MyContainer';
 function App() {
   
   return (
-    <div className="App">
-      <MyNavbar/>
-      <Container>
-      <Row>
-        <Col><MyContainer/></Col>
-        
-      </Row>
-      
-    </Container>
-      
-      
-      
     
-    </div>
+    <Container  >
+      <MyNavbar/>
+    <Row>
+      <Col><MyContainer/></Col>
+      
+    </Row>
+  </Container>
+    
   );
 }
 

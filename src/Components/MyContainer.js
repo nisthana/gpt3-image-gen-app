@@ -10,30 +10,31 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Stack from 'react-bootstrap/Stack';
 import Badge from 'react-bootstrap/Badge';
-export default function Container () {
+import { Container } from 'react-bootstrap';
+export default function MyContainer () {
     const [primaryImageUrl,setPrimaryImageUrl] = useState('photo-realistic.png');
     const [imageTitle,setImageTitle] = useState('an astronaut riding a horse in a photo realistic style');
 
        
     return (
         
-        <div>
-            <Row className="justify-content-md-center">
-                <Col xs lg="12">
-                
-                    <Stack gap={3}>
-                        <SearchBox setPrimaryImageUrl={setPrimaryImageUrl} setImageTitle={setImageTitle}/>
-                        <ImageCard url={primaryImageUrl} title={imageTitle}/>
-                    </Stack>
+            <>
+            <Stack gap={"3"}>
+            <Row >
+                <Col lg="2"/>
+                <Col lg="8">
+                    <SearchBox setPrimaryImageUrl={setPrimaryImageUrl} setImageTitle={setImageTitle}/>
                 </Col>
-
-                
-   
+                <Col lg="2"/>
             </Row>
             
+            <Row>
+                <Col>
+                <ImageCard url={primaryImageUrl} title={imageTitle}/>
+                </Col>
+            </Row>
+            </Stack>
+            </>
             
-            
-            
-        </div>
     )
 }
