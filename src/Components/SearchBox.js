@@ -9,6 +9,7 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import MySpinner from "./MySpinner";
 import Spinner from 'react-bootstrap/Spinner';
 import { Container } from "react-bootstrap";
+import Prompts from "../Data/Prompts";
 
 
 async function invokeOpenApi(searchTerm,setSpinner2,setPrimaryImageUrl) {
@@ -26,7 +27,7 @@ async function invokeOpenApi(searchTerm,setSpinner2,setPrimaryImageUrl) {
         const response = await openai.createImage({
             prompt: searchTerm,
             n: 1,
-            size: "512x512",
+            size: "1024x1024",
           });
           setSpinner2(false);
           //spinnerSetter(false);
@@ -63,7 +64,20 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
             <Col >
                 <h3>What image do you want to generate today?</h3>
                 <Stack gap={3}>
-                <Button>Surprise Me</Button>
+                <Button onClick={()=>{
+                    const idx = Math.floor(Math.random() * Prompts.length);
+                    console.log(idx);
+                    console.log(Prompts[idx].prompt);
+                    setSearchTerm(Prompts[idx].prompt);
+                    const numImages = Prompts[idx].numPics;
+                    const imgIdx = Math.floor(Math.random() * numImages);
+                    const imgUrl = 'img-'+Prompts[idx].imgId+'-'+imgIdx+'.png';
+                    console.log(imgUrl);
+                    setPrimaryImageUrl(imgUrl);
+                    setImageTitle(Prompts[idx].prompt);
+                }
+
+                }>Surprise Me</Button>
                 
                 <Stack gap={3} direction="horizontal">
                             <Form.Control type="text" placeholder="What do you want to create:" onChange={handleTextChange} disabled={spinner2} value={searchTerm}/>
