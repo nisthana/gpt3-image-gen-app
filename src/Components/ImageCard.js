@@ -7,13 +7,14 @@ export default function ImageCard ({url,title}) {
     return (
       
         <Row className="justify-content-md-center">
-          <Col>
+          <Col lg="8">
             <Card >
             
             <Card.Body>
-              <Card.Title>{title}</Card.Title>
+              
               
               <Card.Img variant="bottom" src={url} />
+              <Card.Text>{title}</Card.Text>
             </Card.Body>
             </Card>
         </Col>

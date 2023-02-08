@@ -65,6 +65,18 @@
             prompt:'cutie fluffy creature movie star people, digital art, 3 d, octave render, masterpiece, mega detailed, pixar, disney, vivid illustration, cartoon, fantasy, by george stubbs, artgerm, in the style of ghibli kazuo oga, pastel fur in vincent van gogh style',
             numPics:1,
             img:''
+        },
+        {
+            imgId:112,
+            prompt:'cutie fluffy creature movie star people, digital art, 3 d, octave render, masterpiece, mega detailed, pixar, disney, vivid illustration, cartoon, fantasy, by george stubbs, artgerm, in the style of ghibli kazuo oga, pastel fur in pencil style',
+            numPics:1,
+            img:''
+        },
+        {
+            imgId:113,
+            prompt:'moon over the ocean with a boat',
+            numPics:1,
+            img:''
         }
     
 
