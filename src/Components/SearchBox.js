@@ -42,9 +42,9 @@ async function invokeOpenApi(searchTerm,setSpinner2,setPrimaryImageUrl) {
 export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
     const [searchTerm,setSearchTerm] = useState('an astronaut riding a horse');
     const [spinner2,setSpinner2] = useState(false);
-    const [imageStyle, setImageStyle] = useState('photo realistic');
+    const [imageStyle, setImageStyle] = useState('');
     
-    const [radioValue, setRadioValue] = useState('photo realistic');
+    const [radioValue, setRadioValue] = useState('');
     const radios = [
         { name: 'photo realistic', value: 'photo realistic', imgStyle:'photo realistic',cachedImg:'photo-realistic.png' },
         { name: 'andy warhole', value: 'andy warhole', imgStyle:'andy warhole',cachedImg:'andy-warhole.png'},
@@ -125,7 +125,7 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
     function handleFormSubmit(e) {
         e.preventDefault();
         
-        const searchFor = searchTerm + ' in a ' + imageStyle + ' style';
+        const searchFor = imageStyle == '' ? searchTerm : searchTerm + ' in a ' + imageStyle + ' style';
         console.log(searchFor);
         setImageTitle(searchFor);
         invokeOpenApi(searchFor,setSpinner2,setPrimaryImageUrl);

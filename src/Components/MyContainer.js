@@ -13,7 +13,7 @@ import Badge from 'react-bootstrap/Badge';
 import { Container } from 'react-bootstrap';
 export default function MyContainer () {
     const [primaryImageUrl,setPrimaryImageUrl] = useState('photo-realistic.png');
-    const [imageTitle,setImageTitle] = useState('an astronaut riding a horse in a photo realistic style');
+    const [imageTitle,setImageTitle] = useState('an astronaut riding a horse');
 
        
     return (
