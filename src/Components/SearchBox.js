@@ -62,20 +62,7 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
             <Col >
                 <h3>What image do you want to generate today?</h3>
                 <Stack gap={3}>
-                <Button onClick={()=>{
-                    const idx = Math.floor(Math.random() * Prompts.length);
-                    console.log(idx);
-                    console.log(Prompts[idx].prompt);
-                    setSearchTerm(Prompts[idx].prompt);
-                    const numImages = Prompts[idx].numPics;
-                    const imgIdx = Math.floor(Math.random() * numImages);
-                    const imgUrl = 'img-'+Prompts[idx].imgId+'-'+imgIdx+'.png';
-                    console.log(imgUrl);
-                    setPrimaryImageUrl(imgUrl);
-                    setImageTitle(Prompts[idx].prompt);
-                }
-
-                }>Surprise Me</Button>
+                
                 
                 <Stack gap={3} direction="horizontal">
                             <Form.Control type="text" placeholder="What do you want to create:" onChange={handleTextChange} disabled={spinner2} value={searchTerm}/>
@@ -90,8 +77,20 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
                             className={!spinner2 ? "visually-hidden" : "visually-hidden1"}
                             />
                             {!spinner2 ? 'Search' : ''}</Button>
+                            <Button className="text-nowrap" variant="primary" onClick={()=>{
+                                const idx = Math.floor(Math.random() * Prompts.length);
+                                console.log(idx);
+                                console.log(Prompts[idx].prompt);
+                                setSearchTerm(Prompts[idx].prompt);
+                                const numImages = Prompts[idx].numPics;
+                                const imgIdx = Math.floor(Math.random() * numImages);
+                                const imgUrl = 'img-'+Prompts[idx].imgId+'-'+imgIdx+'.png';
+                                console.log(imgUrl);
+                                setPrimaryImageUrl(imgUrl);
+                                setImageTitle(Prompts[idx].prompt);
+                            }}>Surprise Me!</Button>
                             
-                          </Stack>  
+                </Stack>  
                             
                         
                     

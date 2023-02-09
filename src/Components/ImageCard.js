@@ -5,7 +5,7 @@ export default function ImageCard ({url,title}) {
     return (
       
         <Row className="justify-content-md-center">
-          <Col lg="8">
+          <Col lg="4">
             <Card >
             
             <Card.Body>
@@ -16,6 +16,7 @@ export default function ImageCard ({url,title}) {
             </Card.Body>
             </Card>
         </Col>
+        
         
         </Row>
         
