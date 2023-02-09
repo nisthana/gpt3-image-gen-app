@@ -42,7 +42,7 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
     const [searchTerm,setSearchTerm] = useState('an astronaut riding a horse');
     const [spinner2,setSpinner2] = useState(false);
     const [imageStyle, setImageStyle] = useState('');
-    
+    const [promptSeen,setPromptSeen] = useState([])
     const [radioValue, setRadioValue] = useState('');
     const radios = [
         { name: 'photo realistic', value: 'photo realistic', imgStyle:'photo realistic',cachedImg:'photo-realistic.png' },
@@ -78,16 +78,37 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
                             />
                             {!spinner2 ? 'Search' : ''}</Button>
                             <Button className="text-nowrap" variant="primary" onClick={()=>{
+                                
                                 const idx = Math.floor(Math.random() * Prompts.length);
-                                console.log(idx);
-                                console.log(Prompts[idx].prompt);
                                 setSearchTerm(Prompts[idx].prompt);
                                 const numImages = Prompts[idx].numPics;
                                 const imgIdx = Math.floor(Math.random() * numImages);
-                                const imgUrl = 'img-'+Prompts[idx].imgId+'-'+imgIdx+'.png';
-                                console.log(imgUrl);
+                                var imgUrl = 'img-'+Prompts[idx].imgId+'-'+imgIdx+'.png';
+                                var alreadySeenImage = promptSeen.indexOf(imgUrl) !== -1;
+                                while (alreadySeenImage) {
+                                    
+                                    const idx = Math.floor(Math.random() * Prompts.length);
+                                    
+                                    const numImages = Prompts[idx].numPics;
+                                    const imgIdx = Math.floor(Math.random() * numImages);
+                                    imgUrl = 'img-'+Prompts[idx].imgId+'-'+imgIdx+'.png';
+                                    
+                                    var alreadySeenImage = promptSeen.indexOf(imgUrl) !== -1;
+                                }
+
+                                const alreadySeen1 = promptSeen.concat(imgUrl);
+                            
                                 setPrimaryImageUrl(imgUrl);
                                 setImageTitle(Prompts[idx].prompt);
+                                setPromptSeen(alreadySeen1);
+                                if (promptSeen.length == Prompts.length) {
+                                    setPromptSeen([]);
+                                }
+                                
+                                
+                                
+
+
                             }}>Surprise Me!</Button>
                             
                 </Stack>  
