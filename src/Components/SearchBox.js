@@ -79,7 +79,7 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
                             {!spinner2 ? 'Search' : ''}</Button>
                             <Button className="text-nowrap" variant="primary" onClick={()=>{
                                 
-                                const idx = Math.floor(Math.random() * Prompts.length);
+                                var idx = Math.floor(Math.random() * Prompts.length);
                                 setSearchTerm(Prompts[idx].prompt);
                                 const numImages = Prompts[idx].numPics;
                                 const imgIdx = Math.floor(Math.random() * numImages);
@@ -87,7 +87,7 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
                                 var alreadySeenImage = promptSeen.indexOf(imgUrl) !== -1;
                                 while (alreadySeenImage) {
                                     
-                                    const idx = Math.floor(Math.random() * Prompts.length);
+                                    idx = Math.floor(Math.random() * Prompts.length);
                                     
                                     const numImages = Prompts[idx].numPics;
                                     const imgIdx = Math.floor(Math.random() * numImages);
