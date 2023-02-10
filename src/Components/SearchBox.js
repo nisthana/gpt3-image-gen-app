@@ -17,7 +17,7 @@ async function invokeOpenApi(searchTerm,setSpinner2,setPrimaryImageUrl) {
         apiKey: process.env.REACT_APP_OPENAI_API_KEY,
         
     });
-    console.log("this should fix it");
+    
     const openai = new OpenAIApi(configuration);
     setSpinner2(true);
     //spinnerSetter(true);
