@@ -83,10 +83,13 @@
             prompt:'bears playing basketball with sea horses in desolate planet with 2 moons in style of disney',
             numPics:1,
             img:''
-        }
-
-        
-    
+        },
+        {
+            imgId:115,
+            prompt:'pink ape Astronaut in space holding a claymate in a photorealistic style, digital art',
+            numPics:2,
+            img:''
+        },
 
     ]
 export default Prompts;
