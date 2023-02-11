@@ -59,13 +59,13 @@ export default function SearchBox ({setPrimaryImageUrl,setImageTitle}) {
 
     return (
         <Row className="justify-content-md-center">
-            <Col >
+            <Col xs={12}>
                 <h3>What image do you want to generate today?</h3>
                 <Stack gap={3}>
                 
                 
                 <Stack gap={3} direction="horizontal">
-                            <Form.Control type="text" placeholder="What do you want to create:" onChange={handleTextChange} disabled={spinner2} value={searchTerm}/>
+                    <Form.Control type="text" placeholder="What do you want to create:" onChange={handleTextChange} disabled={spinner2} value={searchTerm}/>
                      <Button variant="primary" onClick={handleFormSubmit} disabled={spinner2}>
                         <Spinner
                             as="span"
