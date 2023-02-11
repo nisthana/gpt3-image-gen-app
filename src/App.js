@@ -4,13 +4,13 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import MyNavbar from './Components/MyNavbar';
-import Button from 'react-bootstrap/Button';
+
 
 import MyContainer from './Components/MyContainer';
 import "@aws-amplify/ui-react/styles.css";
-import { withAuthenticator } from "@aws-amplify/ui-react";
 
-function App({ signOut }) {
+
+function App() {
   
   return (
     
@@ -21,11 +21,11 @@ function App({ signOut }) {
       
     </Row>
     <Row>
-    <Button onClick={signOut}>Sign Out</Button>
+    
     </Row>
   </Container>
     
   );
 }
 
-export default withAuthenticator(App);
+export default App;
