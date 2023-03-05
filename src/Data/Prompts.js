@@ -90,6 +90,12 @@
             numPics:2,
             img:''
         },
+        {
+            imgId:116,
+            prompt:'planets around the moon',
+            numPics:1,
+            img:''
+        },
 
     ]
 export default Prompts;

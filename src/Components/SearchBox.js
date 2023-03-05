@@ -25,7 +25,7 @@ async function invokeOpenApi(searchTerm,setSpinner2,setPrimaryImageUrl) {
         const response = await openai.createImage({
             prompt: searchTerm,
             n: 1,
-            size: "1024x1024",
+            size: "512x512",
           });
           setSpinner2(false);
           //spinnerSetter(false);
